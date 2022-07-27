@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        //Set WeakSet
+        //Estos "objetos/arrays" nos permiten mantener colecciones de datos en los que cada uno de sus elementos son unicos
+        const objectSet = new Set([1, 'string', {}, { name: 'Natalia' }])
+
+
+        //Intentamos ahadir 2 veces el parametro 12
+        objectSet.add(12)
+        objectSet.add(12)
+
+        //solo me devolvera un 12 en este bucle porque aunque hayamos llamado 2 veces a la funcion, el objeto 'Set', se encarga de que los valores sean unicos
+        objectSet.forEach((value) => console.log(value))
+
+        //tambien podemos recorrer un objeto con un bucle for of
+        for (value of objectSet) {
+            console.log(value);
+        }
+
+        //Alguna de las propiedades de los 'Set' que nos pueden facilitar la busqueda de datos serian 'has' o 'size'
+        console.log('Existe este parametro en el objeto set objectSet?', objectSet.has(12));
+        console.log('Que tamaho tiene el objeto objetSet', objectSet.size);
+
+
+        //Los 'WeakSet' solo pueden almacenar objetos, no son iterables (no podemos utilizar un bucle for of para recorrerlos) y son de referencia debil, por lo que si desaparece la referencia dentro del objeto desaparecera de donde la estemso usando tambien  
+        const objectWeakSet = new WeakSet([{}, { name: 'Jose' }])
+
+        //Diferencias entre Arrays y Set
+            //En un Array podemos tener elementos repetidos, mientras que en un set no.
+            //No podemos acceder a elementos de un Set atraves del indice, a diferencia que en los arrays
+            //Para ahadir elementos a un Array utilizamos la funcion 'push' y para un Set utilizamos 'add'
+            //Lo mismo para pare eliminar elementos, Arrays 'pop, shift' u otras funciones de Arrays  mientras qeu en los Set utilizariamos 'delate'
+            //Ambos objetos son iterables (bucles 'for of' o 'forEach')
+
+
+    </script>
+</body>
+
+</html>

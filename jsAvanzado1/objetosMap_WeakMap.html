@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        //El objeto map es un diccionario clave valor donde cualquier tipo de dato como key
+        //Crear un nuevo objeto Map
+        const miMapObj = new Map()
+        //Para asignar nuevos valores al objeto map ".set(key, value)"
+        miMapObj.set('unString', 'Hola soy un string')
+        const obj = {}
+        miMapObj.set(obj, "Hola soy un objeto")
+        miMapObj.set(12, "Hola soy un numero")
+
+
+        //Los objetos map tienen muchas propiedades, entre las mas utilizadas podrian estar 
+        //Tienen una referencia fuerte, quiere decir que si el la referencia es eliminada, el objeto map mantendra el valor dentro aun que esta ya no exista en el contexto
+        //"Get" para obtener un valor asociado al key
+        console.log('Soy get', miMapObj.get('unString'));
+
+        //"ForEach", que nos permite recorrer todo el map utilizando una funcion como callBack
+        miMapObj.forEach((value) => console.log('Soy forEach', value))
+        //Para recorrer todos los valores de este objeto podemos hacerlo con un bucle "for of" con la clave valor
+        for ([key, value] of miMapObj) {
+            console.log('Soy forOf', value);
+        }
+
+        //"Delete" para borrar un valor asociado a una clave en especifico 
+        miMapObj.delete(12)
+        console.log(miMapObj);
+
+        //"Clear", para eliminar todos los valores asociados a este objeto
+        miMapObj.clear()
+        console.log(miMapObj);
+
+        //Tambien existen los WeakMap, dnde como key unicamente valen objetos 
+        //Los WeakMap tienen una referencia debil, quiere decir que si el objeto es eliminado del contexto, la referencia en el objeto map tambien sera eliminada
+        const objetoWeakMap = new WeakMap()
+        //objetoWeakMap.set('unString', 'Valor que quier') //Error
+        objetoWeakMap.set({}, 'Valor que quiera') //Correcto
+        const object = { 1: 'pez', 2: 'raton', 3: 12 }
+        objetoWeakMap.set(object, 'Valor para mi objeto object')
+        console.log(objetoWeakMap)
+
+    </script>
+</body>
+
+</html>
