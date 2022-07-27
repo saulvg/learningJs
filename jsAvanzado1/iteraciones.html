@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iteraciones</title>
+
+    <script type="text/javascript">
+
+        //Arrays
+        const array = new Array(1, 2, 3, 4, 5, 6, 7, 8, 9)
+
+        //Una manera de recorrer un array es a traves de un bucle for of
+        for (let item of array) {
+            console.log(item);
+        }
+
+        //Otra podria ser por ejemplo utilizando el 'Symbil.iterator' y la funcionion 'next' , que recorreria uno a un alos valores cada vez que llamasemos a la funcion
+        const iterable = array[Symbol.iterator]()
+        console.log(iterable.next());
+        console.log(iterable.next());
+        console.log(iterable.next());
+
+        //Objetos con Symbol.iterator (opcion porpuesta, repasar)
+
+        const books = {
+            categories: {
+                drama: ['Sensatez y Sentimientos', 'Ana Karenina', 'Orgullo y prejuicio'],
+                fiction: ['Los robots del amanecer', 'Fundacion', 'Segunda Fundacion']
+            },
+
+            [Symbol.iterator]() {
+                let bookCategories = Object.values(this.categories)
+                let indexDrama = 0;
+                let indexFiction = 0;
+                return {
+                    next() {
+                        if (indexDrama >= bookCategories[indexFiction].length) {
+
+                            indexFiction++
+                            indexDrama = 0
+
+                        }
+                        if (indexFiction >= bookCategories.length) {
+                            return { value: undefined, done: true }
+                        }
+                        return {
+                            value: bookCategories[indexFiction][indexDrama++],
+                            done: false
+                        }
+                    }
+                }
+            }
+        }
+        for (let book of books) {
+            console.log(book);
+        }
+
+        //Iterar Objeto (opcion propia)
+        const libros = {
+            categories: {
+                drama: ['Sensatez y Sentimientos', 'Ana Karenina', 'Orgullo y prejuicio'],
+                fiction: ['Los robots del amanecer', 'Fundacion', 'Segunda Fundacion']
+            }
+        }
+        for (let libro in libros) {
+            const categorias = Object.values(libros);
+            for (let categoria of categorias) {
+                for (let categor in categoria) {
+                    console.log(categor);
+                    console.log(categoria.categor);
+                    console.log(categor, ':', categoria.categor);
+                }
+            }
+        }
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
