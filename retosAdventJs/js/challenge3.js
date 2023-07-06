@@ -7,7 +7,7 @@ function start(){
         'Renos -> dasher, dancer',
         'Regalos -> book, doll, ball'
     ]
-    const packOfGifts = ["book", "doll", "ball", 'papa']
+    const packOfGifts = ["book", "doll", "ball"]
     const reindeers = ["dasher", "dancer"]
     // el pack de regalos pesa 4 + 4 + 4 = 12
     // los renos pueden llevar (2 * 6) + (2 * 6) = 24
@@ -21,31 +21,17 @@ start();
 
 
 function distributeGifts(packOfGifts, reindeers) {
+    //Peso maximo que pueden llevar los renos
+    const capacity = reindeers.join('').length * 2
+
     //Peso de los regalos
-    const weightOfGifts = packOfGifts.map(g => g.length)
+    const weightGifts = packOfGifts.join('').length
+
+    //Paquetes de regalos que pueden llevar los renos
+    const packages = Math.floor(capacity/ weightGifts)
     
-    //Peso que pueden llevar los renos
-    const weightOfReindeers = reindeers.map(r => r.length *2)
-
-    //Numero maximo de cajas que se pueden entregar
-    let maxGifts = 0;
-
-    for (let j = 0; j < weightOfReindeers.length; j++) {
-        let currentReindeer = weightOfReindeers[j]
-        for (let i = 0; i < weightOfGifts.length; i++) {
-            
-            if(currentReindeer >= weightOfGifts[i]){
-               
-                currentReindeer -= weightOfGifts[i]
-            }
-        }
-
-        maxGifts ++
-            
-    }
-
-    console.log(maxGifts);
-    return(maxGifts)
+    console.log(packages);
+    return packages
 
 }
 
