@@ -91,5 +91,41 @@ function fitsInOneBox(boxes) {
     return beside
   }
 
+  /* 
+  function fitsInOneBox(boxes) {
+
+    //Ordenamos el array por la longitud
+    const orderBoxes = boxes.sort((a, b) => {
+        return a.l - b.l
+    })
+    
+    //Bucle para comprobar si caben 
+    for (let i = 0; i < orderBoxes.length; i++) {
+        //objeto caja que se esta recorriedo
+        const currentBox = orderBoxes[i];
+        //siguiente caja que se va a recorrer
+        const nextBox = orderBoxes[i + 1]
+
+        if (currentBox && nextBox) continue
+        
+        //Comprobaciones de si las medidas son inferiores a las de su proxima caja
+        const checkL = currentBox.l >= nextBox?.l
+        const checkW = currentBox.w >= nextBox?.w 
+        const checkH = currentBox.h >= nextBox?.h 
+
+        //Si se cumplen todas las condiciones las cajas entrar
+        if (checkL && checkW && checkH) {
+            return  false
+
+        //Si no se cumplen las condiciones y la ultima caja (no existe) es diferente a undefined no caben detenemos el bucle, no hace falta comprobar mas
+        }
+        
+    }
+    return true
+  }
+
+  
+  */
+
 
   
